@@ -1,50 +1,82 @@
 package cse360assign2;
-/**
- * An adding machine, adds and subtracts values while keeping history.
- * @author Foxtrot
- *<p>
- *ClassID: 1213015295
- */
-public class AddingMachine {
 
+import java.util.ArrayList;
+
+/**
+ * An adding machine, adds and subtracts values 
+ * while keeping a transactions history.
+ * @author Jacob Ybarra
+ *<p>
+ *ASUID: 1213015295
+ */
+public class AddingMachine 
+{
+	
 	private int total;
+	private ArrayList transactions = new ArrayList();
 	/**
 	 * The Constructor method, creates the object.
+	 * Used to set the total and transactions.
 	 */
-	public AddingMachine () {
+	public AddingMachine () 
+	{
 		total = 0;  // not needed - included for clarity
+		transactions.add(0);
 	}
 	/**
-	 * 
-	 * @return an integer that is the total.
+	 * It will return the total amount of all 
+	 * operations calculated before a clear.
+	 * @return an integer that represents the total calculated so far.
 	 */
-	public int getTotal () {
-		return 0;
+	public int getTotal () 
+	{
+		return total;
 	}
 	/**
-	 * Adds the int to the int on record.
-	 * @param value the int that is being added
+	 * Adds an integer value to the total value stored 
+	 * and stores that value in transactions.
+	 * @param value the integer added to the total.
 	 */
-	public void add (int value) {
-		
+	public void add (int value) 
+	{
+		transactions.add("+");
+		transactions.add(value);
+		total = total + value;
 	}
 	/**
-	 * Subtracts the int from the int on record.
-	 * @param value the int that is being subtracted from the int on record.
+	 * Subtracts an integer from the total value 
+	 * and stores that value in transactions.
+	 * @param value the integer subtracted from the total.
 	 */
-	public void subtract (int value) {
-		
+	public void subtract (int value) 
+	{
+		transactions.add("-");
+		transactions.add(value);
+		total = total - value;
 	}
 	/**
-	 * 	Converts the values to a String object.
+	 * Converts the values stored from all operations to a String object.
+	 * @return a String that holds the values and operators of all transactions
 	 */
-	public String toString () {
-		return "";
+	public String toString () 
+	{
+		String temp = "";
+		int index = 0;
+		while (index < transactions.size())
+		{
+			temp = temp + transactions.get(index) + " ";
+			index++;
+		}
+		return temp;
 	}
 	/**
-	 * Clears the input of any values
+	 * Clears the total to zero 
+	 * and also clears and sets the transactions to zero.
 	 */
-	public void clear() {
-	
+	public void clear () 
+	{
+		total = 0;
+		transactions.clear();
+		transactions.add(0);
 	}
 }
